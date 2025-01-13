@@ -24,3 +24,4 @@ spec:
     syncOptions:
       - CreateNamespace=true
       - CreateCustomResourceDefinitions=true
+      - ServerSideApply=true
