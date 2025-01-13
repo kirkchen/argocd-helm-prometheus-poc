@@ -8,11 +8,12 @@ spec:
   source:
     repoURL: https://github.com/kirkchen/argocd-helm-prometheus-poc
     targetRevision: HEAD
-    path: base/kube-prometheus-stack
+    path: kube-prometheus-stack/base
     helm:
       valueFiles:
         - values.yaml
-        - ../../overlays/sit/values.yaml
+        - ../overlays/sit/values.yaml
+      skipCrds: false
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring-sit
@@ -22,3 +23,4 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+      - CreateCustomResourceDefinitions=true
