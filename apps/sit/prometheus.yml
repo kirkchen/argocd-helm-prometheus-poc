@@ -1,21 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prometheus
+  name: prometheus-sit
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/kirkchen/argocd-helm-prometheus-poc
     targetRevision: HEAD
-    path: overlays/staging
+    path: base/kube-prometheus-stack
     helm:
       valueFiles:
-        - ../../base/kube-prometheus-stack/values.yaml
         - values.yaml
+        - ../../overlays/sit/values.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: monitoring
+    namespace: monitoring-sit
   syncPolicy:
     automated:
       prune: true

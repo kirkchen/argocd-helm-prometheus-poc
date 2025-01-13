@@ -9,6 +9,8 @@ spec:
     repoURL: https://github.com/kirkchen/argocd-helm-prometheus-poc
     targetRevision: HEAD
     path: apps
+    directory:
+      recurse: true
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
